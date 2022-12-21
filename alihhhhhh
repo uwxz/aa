@@ -1,0 +1,53 @@
+<?php
+$link = mysqli_connect("localhost", "root", "", " exam");
+    if($link === false){
+die("ERROR: Could not connect. " . mysqli_connect_error()); }
+$sql = "CREATE student Response (
+Name VARCHAR(30) NOT NULL,
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+StageVARCHAR(30) NOT NULL,
+)";
+if(mysqli_query($link, $sql)){
+echo "Table created successfully."; } else{
+echo "ERROR: Could not able to execute $sql. " . mysqli_error($link); }
+
+// get the post records
+$Name = $_POST['Name'];
+$id = $_POST['id'];
+$Stage = $_POST['Stage'];
+
+
+// database insert SQL code
+$sql = "INSERT INTO student response (Id, Name, id, `Stage ) VALUES ('0', '$Name', '$id', '$Stage')";
+
+// insert in database 
+$rs = mysqli_query($link, $sql);
+
+if($rs)
+{
+echo "Contact Records Inserted";
+}
+?>
+......................
+<form action="action_page.php">
+    <p>Please fill in this form to create database.</p>
+    <hr>
+
+    <label for="Name"><b>Name</b></label>
+    <input type="text" placeholder="write your Name" name="Name" id="Name" required><br />
+
+    <label for="id"><b>id</b></label>
+    <input type="id" placeholder="write your id" name="Name" id="Name" required><br />
+    <label for="Stage"><b>Stage</b></label>
+    <select id="Stage" name="Stage">
+      <option value="FIRST">FIRST</option>
+      <option value="SECOND">SECOND</option>
+      <option value="THIRD">THIRD</option>
+      <option value="FOURTH">FOURTH</option>
+    </select>
+    <hr>
+
+    <button type="submit" class="registerbtn">submit</button>
+  </div>
+
+</form>
